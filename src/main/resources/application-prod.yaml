@@ -3,7 +3,7 @@ spring:
   datasource:
     url: {{ secrets.DB_URL }}
     username: {{ secrets.DB_USERNAME }}
-    password: {{ secretsDB_PASSWORD }}
+    password: {{ secrets.DB_PASSWORD }}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
