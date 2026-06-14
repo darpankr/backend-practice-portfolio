@@ -1,9 +1,9 @@
 
 spring:
   datasource:
-    url: jdbc:mysql://database-1.cutiaiaeoqqj.us-east-1.rds.amazonaws.com:3306/awsportfoliodemo
-    username: {{DB_USERNAME}}
-    password: {{DB_PASSWORD}}
+    url: {{ secrets.DB_URL }}
+    username: {{ secrets.DB_USERNAME }}
+    password: {{ secretsDB_PASSWORD }}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
