@@ -20,7 +20,7 @@ jobs:
           cache: maven
 
       - name: Run Tests
-        run: mvn clean test -Dspring.profiles.active=dev
+        run: mvn clean test -Dspring.profiles.active=profile
         env:
           DB_URL: ${{ secrets.DB_URL }}
           DB_USERNAME: ${{ secrets.DB_USERNAME }}
