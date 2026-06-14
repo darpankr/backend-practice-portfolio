@@ -19,4 +19,9 @@ public class PortfolioPracticeApplication {
 		return String.format("Hello " + name);
 	}
 
+	@GetMapping("/environment")
+	public String env(@RequestParam(defaultValue = "dev") String name){
+		return String.format("Env " + name);
+	}
+
 }
