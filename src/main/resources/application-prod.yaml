@@ -1,7 +1,7 @@
 
 spring:
   datasource:
-    url: {{ secrets.DB_URL }}
+    url: jdbc:mysql://database-1.cutiaiaeoqqj.us-east-1.rds.amazonaws.com:3306/awsportfoliodemo
     username: {{ secrets.DB_USERNAME }}
     password: {{ secrets.DB_PASSWORD }}
     driver-class-name: com.mysql.cj.jdbc.Driver
