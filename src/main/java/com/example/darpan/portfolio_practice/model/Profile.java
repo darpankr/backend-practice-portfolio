@@ -19,7 +19,7 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(nullable = false)
+    @Builder.Default
     private boolean active = false;
 
     @Column(nullable = false, columnDefinition = "TEXT")
