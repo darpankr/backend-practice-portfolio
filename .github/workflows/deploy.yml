@@ -19,19 +19,7 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Run Tests
-        run: mvn clean test -Dspring.profiles.active=profile
-        env:
-          DB_URL: ${{ secrets.DB_URL }}
-          DB_USERNAME: ${{ secrets.DB_USERNAME }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-
-      - name: Analyze with SonarCloud
-        run: mvn sonar:sonar -Dsonar.token=${{ secrets.SONAR_TOKEN }}
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-      - name: DEBUG - Check env vars exist
+      - name: Debug - Check env vars
         run: |
           if [ -z "$DB_URL" ]; then
             echo "❌ DB_URL is NOT set"
@@ -43,13 +31,21 @@ jobs:
           else
             echo "✅ DB_USERNAME is set"
           fi
-          env:
+        env:
           DB_URL: ${{ secrets.DB_URL }}
           DB_USERNAME: ${{ secrets.DB_USERNAME }}
 
-      - name: Build Package
-        run: mvn clean package -DskipTests -Dspring.profiles.active=prod
+      - name: Build and Test
+        run: mvn clean verify -Dspring.profiles.active=prod
         env:
+          DB_URL: ${{ secrets.DB_URL }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+
+      - name: Analyze with SonarCloud
+        run: mvn sonar:sonar
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           DB_URL: ${{ secrets.DB_URL }}
           DB_USERNAME: ${{ secrets.DB_USERNAME }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
